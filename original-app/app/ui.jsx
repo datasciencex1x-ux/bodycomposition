@@ -205,47 +205,58 @@ function Avatar({ name, sex }) {
 }
 
 
-/* Logo de marca (SVG embebido). Aproximación a la identidad: "B" con figura
-   dinámica, degradado teal->verde y acento ámbar. Sin archivos externos. */
+/* ============================================================
+   Logo de marca "Body Composition" — alto impacto, SVG embebido.
+   Monograma B dinámico, degradado teal->verde, acento ámbar,
+   badge oscuro con brillo y arco de medición. Sin archivos externos.
+   ============================================================ */
 function BCLogo({ size = 40, className = "brand-logo", style }) {
-  const g = "bcLogoG", g2 = "bcLogoG2";
   return (
-    <svg className={className} width={size} height={size} viewBox="0 0 48 48" role="img" aria-label="Body Composition" style={style}>
+    <svg className={className} width={size} height={size} viewBox="0 0 48 48"
+         role="img" aria-label="Body Composition" style={style}>
       <defs>
-        <linearGradient id={g} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#2bb6c9" />
-          <stop offset="55%" stopColor="#3fb84e" />
-          <stop offset="100%" stopColor="#7bc450" />
+        <linearGradient id="bcBg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#123a3f" />
+          <stop offset="100%" stopColor="#0a0d12" />
         </linearGradient>
-        <linearGradient id={g2} x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0%" stopColor="#36c6b0" />
-          <stop offset="100%" stopColor="#9ad14a" />
+        <linearGradient id="bcMark" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#2bd4c0" />
+          <stop offset="52%" stopColor="#3fb84e" />
+          <stop offset="100%" stopColor="#8fd14a" />
         </linearGradient>
+        <radialGradient id="bcGlow" cx="32%" cy="20%" r="85%">
+          <stop offset="0%" stopColor="rgba(63,184,78,0.45)" />
+          <stop offset="100%" stopColor="rgba(63,184,78,0)" />
+        </radialGradient>
       </defs>
-      <rect x="1" y="1" width="46" height="46" rx="12" fill="#0e141d" stroke="rgba(255,255,255,0.08)" />
-      {/* tronco de la B */}
-      <rect x="11" y="10" width="5.4" height="28" rx="2.4" fill={"url(#" + g + ")"} />
-      {/* lóbulos de la B */}
-      <path d="M16 11 h9 a8 8 0 0 1 0 16 h-9 z" fill="none" stroke={"url(#" + g + ")"} strokeWidth="5" strokeLinejoin="round" />
-      <path d="M16 23 h10 a8 8 0 0 1 0 15 h-10 z" fill="none" stroke={"url(#" + g2 + ")"} strokeWidth="5" strokeLinejoin="round" />
-      {/* figura dinámica (cabeza + zancada) */}
-      <circle cx="27.5" cy="15.5" r="3.1" fill={"url(#" + g2 + ")"} />
-      <path d="M20 32 C 25 24, 30 24, 33 19" fill="none" stroke="#eef3f8" strokeWidth="2.2" strokeLinecap="round" opacity="0.92" />
-      <path d="M22 37 C 26 33, 29 31, 33 32" fill="none" stroke="#f7a823" strokeWidth="2.2" strokeLinecap="round" opacity="0.95" />
+      <rect x="1" y="1" width="46" height="46" rx="13" fill="url(#bcBg)" stroke="rgba(255,255,255,0.10)" />
+      <rect x="1" y="1" width="46" height="46" rx="13" fill="url(#bcGlow)" />
+      {/* arco de medición */}
+      <path d="M33 8.5 A 18 18 0 0 1 39.5 24" fill="none" stroke="rgba(143,209,74,0.40)" strokeWidth="2" strokeLinecap="round" />
+      {/* monograma B */}
+      <g fill="none" stroke="url(#bcMark)" strokeWidth="5.4" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M16 11 V37" />
+        <path d="M16 11 H25 a6.6 6.6 0 0 1 0 13 H16" />
+        <path d="M16 24 H26.5 a6.9 6.9 0 0 1 0 13 H16" />
+      </g>
+      {/* núcleo / acento ámbar (cabeza de figura) */}
+      <circle cx="30.5" cy="13" r="3.2" fill="#f7a823" />
+      <circle cx="30.5" cy="13" r="3.2" fill="none" stroke="rgba(10,13,18,0.25)" strokeWidth="0.6" />
     </svg>
   );
 }
 
-/* Versión en cadena para HTML de reportes/impresión. */
+/* Versión en cadena para HTML de reportes/impresión (ids propios). */
 window.BC_LOGO_SVG =
   '<svg width="56" height="56" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">' +
-  '<defs><linearGradient id="bcLogoGs" x1="0" y1="0" x2="1" y2="1">' +
-  '<stop offset="0%" stop-color="#2bb6c9"/><stop offset="55%" stop-color="#3fb84e"/><stop offset="100%" stop-color="#7bc450"/></linearGradient>' +
-  '<linearGradient id="bcLogoGs2" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#36c6b0"/><stop offset="100%" stop-color="#9ad14a"/></linearGradient></defs>' +
-  '<rect x="1" y="1" width="46" height="46" rx="12" fill="#0e141d"/>' +
-  '<rect x="11" y="10" width="5.4" height="28" rx="2.4" fill="url(#bcLogoGs)"/>' +
-  '<path d="M16 11 h9 a8 8 0 0 1 0 16 h-9 z" fill="none" stroke="url(#bcLogoGs)" stroke-width="5" stroke-linejoin="round"/>' +
-  '<path d="M16 23 h10 a8 8 0 0 1 0 15 h-10 z" fill="none" stroke="url(#bcLogoGs2)" stroke-width="5" stroke-linejoin="round"/>' +
-  '<circle cx="27.5" cy="15.5" r="3.1" fill="url(#bcLogoGs2)"/>' +
-  '<path d="M20 32 C 25 24, 30 24, 33 19" fill="none" stroke="#eef3f8" stroke-width="2.2" stroke-linecap="round"/>' +
-  '<path d="M22 37 C 26 33, 29 31, 33 32" fill="none" stroke="#f7a823" stroke-width="2.2" stroke-linecap="round"/></svg>';
+  '<defs>' +
+  '<linearGradient id="bcBgR" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#123a3f"/><stop offset="100%" stop-color="#0a0d12"/></linearGradient>' +
+  '<linearGradient id="bcMarkR" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2bd4c0"/><stop offset="52%" stop-color="#3fb84e"/><stop offset="100%" stop-color="#8fd14a"/></linearGradient>' +
+  '<radialGradient id="bcGlowR" cx="32%" cy="20%" r="85%"><stop offset="0%" stop-color="rgba(63,184,78,0.45)"/><stop offset="100%" stop-color="rgba(63,184,78,0)"/></radialGradient>' +
+  '</defs>' +
+  '<rect x="1" y="1" width="46" height="46" rx="13" fill="url(#bcBgR)" stroke="rgba(255,255,255,0.10)"/>' +
+  '<rect x="1" y="1" width="46" height="46" rx="13" fill="url(#bcGlowR)"/>' +
+  '<path d="M33 8.5 A 18 18 0 0 1 39.5 24" fill="none" stroke="rgba(143,209,74,0.40)" stroke-width="2" stroke-linecap="round"/>' +
+  '<g fill="none" stroke="url(#bcMarkR)" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round">' +
+  '<path d="M16 11 V37"/><path d="M16 11 H25 a6.6 6.6 0 0 1 0 13 H16"/><path d="M16 24 H26.5 a6.9 6.9 0 0 1 0 13 H16"/></g>' +
+  '<circle cx="30.5" cy="13" r="3.2" fill="#f7a823"/></svg>';
