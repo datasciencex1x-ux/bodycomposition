@@ -24,6 +24,10 @@ export * from './methods';
 export * from './validation';
 export * from './age';
 export { mean, stdev, sum, round, clamp } from './util';
+export * from './metabolism';
+export * from './nutrition';
+export * from './supplements';
+export * from './performance';
 
 export interface EngineSettings {
   conversion: DensityConversion;

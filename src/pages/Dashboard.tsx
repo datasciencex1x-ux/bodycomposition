@@ -108,10 +108,13 @@ export default function Dashboard() {
         </div>
         <div className="row" style={{ marginTop: '.8rem' }}>
           <Link to="/new"><button className="primary">＋ Nueva evaluación</button></Link>
-          <Link to="/patients"><button>Pacientes</button></Link>
           <Link to="/comparator"><button>Comparador</button></Link>
           <Link to="/sports"><button>Somatotipo vs Deportes</button></Link>
-          <Link to="/methods"><button>Biblioteca de métodos</button></Link>
+          <Link to="/metabolism"><button>Metabolismo</button></Link>
+          <Link to="/diet"><button>Plan nutricional</button></Link>
+          <Link to="/supplements"><button>Suplementos</button></Link>
+          <Link to="/performance"><button>Rendimiento</button></Link>
+          <Link to="/wearables"><button>Wearables</button></Link>
         </div>
       </div>
     </div>

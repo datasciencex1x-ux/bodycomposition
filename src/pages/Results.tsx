@@ -9,7 +9,7 @@ import BodyMap from '../components/BodyMap';
 import { FAT_BANDS } from '../engine';
 
 const TISSUE_COLORS: Record<string, string> = {
-  skin: '#a78bfa', adipose: '#eab308', muscle: '#ef4444', bone: '#e2e8f0', residual: '#22d3ee',
+  skin: 'var(--fr-skin)', adipose: 'var(--fr-adipose)', muscle: 'var(--fr-muscle)', bone: 'var(--fr-bone)', residual: 'var(--fr-residual)',
 };
 
 export default function Results() {

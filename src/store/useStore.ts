@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { Patient, Evaluation, Group, Appointment, Settings } from './types';
+import { Patient, Evaluation, Group, Appointment, Settings, WearableEntry } from './types';
 
 function uid(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
@@ -11,6 +11,7 @@ interface State {
   evaluations: Evaluation[];
   groups: Group[];
   appointments: Appointment[];
+  wearables: WearableEntry[];
   settings: Settings;
 
   // Patients
@@ -33,6 +34,9 @@ interface State {
   updateAppointment: (id: string, a: Partial<Appointment>) => void;
   deleteAppointment: (id: string) => void;
 
+  addWearable: (w: Omit<WearableEntry, 'id'>) => string;
+  deleteWearable: (id: string) => void;
+
   setSettings: (s: Partial<Settings>) => void;
   seedDemo: () => void;
 }
@@ -52,6 +56,7 @@ export const useStore = create<State>()(
       evaluations: [],
       groups: [],
       appointments: [],
+      wearables: [],
       settings: defaultSettings,
 
       addPatient: (p) => {
@@ -97,6 +102,13 @@ export const useStore = create<State>()(
         set((s) => ({ appointments: s.appointments.map((x) => (x.id === id ? { ...x, ...a } : x)) })),
       deleteAppointment: (id) =>
         set((s) => ({ appointments: s.appointments.filter((x) => x.id !== id) })),
+
+      addWearable: (w) => {
+        const id = uid();
+        set((s) => ({ wearables: [...s.wearables, { ...w, id }] }));
+        return id;
+      },
+      deleteWearable: (id) => set((s) => ({ wearables: s.wearables.filter((x) => x.id !== id) })),
 
       setSettings: (s) => set((st) => ({ settings: { ...st.settings, ...s } })),
 

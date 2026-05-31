@@ -12,6 +12,12 @@ import SportsComparison from './pages/SportsComparison';
 import Reports from './pages/Reports';
 import MethodsLibrary from './pages/MethodsLibrary';
 import SettingsPage from './pages/Settings';
+import Agenda from './pages/Agenda';
+import Metabolism from './pages/Metabolism';
+import Diet from './pages/Diet';
+import Supplements from './pages/Supplements';
+import Performance from './pages/Performance';
+import Wearables from './pages/Wearables';
 
 export default function App() {
   const theme = useStore((s) => s.settings.theme);
@@ -29,6 +35,12 @@ export default function App() {
         <Route path="/new" element={<NewEvaluation />} />
         <Route path="/new/:patientId" element={<NewEvaluation />} />
         <Route path="/results/:id" element={<Results />} />
+        <Route path="/agenda" element={<Agenda />} />
+        <Route path="/metabolism" element={<Metabolism />} />
+        <Route path="/diet" element={<Diet />} />
+        <Route path="/supplements" element={<Supplements />} />
+        <Route path="/performance" element={<Performance />} />
+        <Route path="/wearables" element={<Wearables />} />
         <Route path="/comparator" element={<Comparator />} />
         <Route path="/sports" element={<SportsComparison />} />
         <Route path="/sports/:evalId" element={<SportsComparison />} />

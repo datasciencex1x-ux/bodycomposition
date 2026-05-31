@@ -42,6 +42,17 @@ export interface Appointment {
   reason?: string;
 }
 
+export interface WearableEntry {
+  id: string;
+  patientId: string;
+  date: string;          // YYYY-MM-DD
+  steps?: number;
+  restingHR?: number;    // lpm
+  sleepHours?: number;
+  weightKg?: number;
+  activeKcal?: number;
+}
+
 export interface Settings {
   theme: 'dark' | 'light';
   lang: 'es' | 'en';
