@@ -1,0 +1,13 @@
+node_modules
+dist
+dist-single
+dist-ssr
+BodyComposition.html
+*.zip
+*.local
+.DS_Store
+.vite
+coverage
+*.log
+Logo-preview.html
+netlify-deploy/
