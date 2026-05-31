@@ -8,6 +8,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:single": "vite build --config vite.config.singlefile.ts",
+    "build:original": "node original-app/build/build-single.mjs",
+    "serve:original": "node -e \"require('http').createServer((q,s)=>{const p=require('path').join('original-app',q.url==='/'?'index.html':q.url);require('fs').readFile(p,(e,d)=>{if(e){s.statusCode=404;return s.end('404')}const t={'.html':'text/html','.css':'text/css','.jsx':'text/babel','.js':'text/javascript'}[require('path').extname(p)]||'text/plain';s.setHeader('content-type',t);s.end(d)})}).listen(5174,()=>console.log('http://localhost:5174'))\"",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -20,9 +22,12 @@
     "zustand": "^4.5.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/preset-react": "^7.29.7",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "jsdom": "^24.1.3",
     "typescript": "^5.5.4",
     "vite": "^5.4.6",
     "vite-plugin-singlefile": "^2.3.3",

@@ -1,5 +1,17 @@
 # 🧬 Body Composition — by Data Science Analytics
 
+> **Nota:** El repositorio contiene **dos** implementaciones:
+> 1. **`original-app/`** — la app original de *Claude Designs* (React UMD + JSX en el navegador,
+>    `styles.css` + `app/*.jsx`). Es la versión de referencia del diseño.
+>    - Ver al instante: `npm run build:original` genera `BodyComposition.html` (un solo archivo, doble clic).
+>    - Servir en desarrollo: `npm run serve:original` → http://localhost:5174
+> 2. **App React + TypeScript + Vite** (`src/`) — reimplementación con motor de cálculo testeado.
+>
+> Lo descrito abajo corresponde a la versión Vite.
+
+---
+
+
 Sistema integral de **análisis de composición corporal por antropometría** (protocolo **ISAK**),
 de grado clínico-científico, para profesionales de la salud, ciencias del ejercicio y rendimiento
 deportivo.
