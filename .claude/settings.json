@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm install --no-audit --no-fund >/tmp/bc-setup.log 2>&1 || true"
+          }
+        ]
+      }
+    ]
+  }
+}
