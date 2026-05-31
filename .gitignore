@@ -10,3 +10,4 @@ BodyComposition.html
 coverage
 *.log
 Logo-preview.html
+netlify-deploy/
