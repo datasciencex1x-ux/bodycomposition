@@ -474,3 +474,7 @@ select.sel-input { background: var(--surface-2); border: 1px solid var(--line); 
 .field select.sel-input { width: 100%; }
 .field input[type="date"] { color-scheme: dark; }
 [data-theme="light"] .field input[type="date"] { color-scheme: light; }
+
+/* Aviso suave (ámbar) para campos opcionales fuera de rango */
+.input-wrap.warn input { border-color: color-mix(in srgb, var(--warn) 50%, transparent); }
+.input-wrap.warn .unit { color: var(--warn); font-weight: 600; }
