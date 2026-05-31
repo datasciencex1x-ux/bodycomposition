@@ -124,7 +124,22 @@ function App() {
     <div className="app">
       <aside className="sidebar">
         <div className="brand">
-          <img className="brand-logo" src="assets/logo-mark.png" alt="Body Composition" />
+          <svg className="brand-logo" width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="Body Composition">
+            <defs>
+              <linearGradient id="bcLogoGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#ffc25c" />
+                <stop offset="100%" stopColor="#f7a823" />
+              </linearGradient>
+            </defs>
+            <rect x="0.5" y="0.5" width="39" height="39" rx="10" fill="url(#bcLogoGrad)" />
+            <g stroke="#0a0d12" strokeWidth="2.1" strokeLinecap="round" fill="none" opacity="0.92">
+              <path d="M14 10 C 27 15, 13 25, 26 30" />
+              <path d="M26 10 C 13 15, 27 25, 14 30" />
+              <line x1="16.5" y1="13" x2="23.5" y2="13" />
+              <line x1="14.5" y1="20" x2="25.5" y2="20" />
+              <line x1="16.5" y1="27" x2="23.5" y2="27" />
+            </g>
+          </svg>
           <div>
             <div className="brand-name">Body Composition</div>
             <div className="brand-sub">Data Science Analytics</div>

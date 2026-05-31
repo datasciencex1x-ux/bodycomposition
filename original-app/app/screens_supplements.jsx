@@ -93,7 +93,7 @@ function SupplementsScreen({ ctx }) {
         <div className="card" style={{ position:"sticky", top:92 }}>
           <div className="card-head">
             <div style={{ display:"flex", alignItems:"center", gap:9 }}>
-              <img src="assets/logo-mark.png" alt="" style={{ height:30, width:"auto" }} />
+              <BCLogo size={30} className="" />
               <div><h3>{lang==="es"?"Asistente IA":"AI assistant"}</h3><div className="sub">{lang==="es"?"Protocolo personalizado":"Personalised protocol"}</div></div>
             </div>
           </div>

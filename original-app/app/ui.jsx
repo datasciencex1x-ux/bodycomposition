@@ -204,3 +204,34 @@ function Avatar({ name, sex }) {
   return <div className={"avatar" + (sex === "female" ? " f" : "")}>{initials}</div>;
 }
 
+
+/* Logo de marca (SVG embebido, sin archivos externos). Hélice de ADN sobre badge ámbar. */
+function BCLogo({ size = 40, className = "brand-logo", style }) {
+  const gid = "bcLogoGrad";
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 40 40" role="img" aria-label="Body Composition" style={style}>
+      <defs>
+        <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#ffc25c" />
+          <stop offset="100%" stopColor="#f7a823" />
+        </linearGradient>
+      </defs>
+      <rect x="0.5" y="0.5" width="39" height="39" rx="10" fill={`url(#${gid})`} />
+      <g stroke="#0a0d12" strokeWidth="2.1" strokeLinecap="round" fill="none" opacity="0.92">
+        <path d="M14 10 C 27 15, 13 25, 26 30" />
+        <path d="M26 10 C 13 15, 27 25, 14 30" />
+        <line x1="16.5" y1="13" x2="23.5" y2="13" />
+        <line x1="14.5" y1="20" x2="25.5" y2="20" />
+        <line x1="16.5" y1="27" x2="23.5" y2="27" />
+      </g>
+    </svg>
+  );
+}
+
+/* Versión en cadena (para HTML de reportes/impresión). */
+window.BC_LOGO_SVG = '<svg width="56" height="56" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">'
+  + '<defs><linearGradient id="bcLogoGradStr" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffc25c"/><stop offset="100%" stop-color="#f7a823"/></linearGradient></defs>'
+  + '<rect x="0.5" y="0.5" width="39" height="39" rx="10" fill="url(#bcLogoGradStr)"/>'
+  + '<g stroke="#0a0d12" stroke-width="2.1" stroke-linecap="round" fill="none" opacity="0.92">'
+  + '<path d="M14 10 C 27 15, 13 25, 26 30"/><path d="M26 10 C 13 15, 27 25, 14 30"/>'
+  + '<line x1="16.5" y1="13" x2="23.5" y2="13"/><line x1="14.5" y1="20" x2="25.5" y2="20"/><line x1="16.5" y1="27" x2="23.5" y2="27"/></g></svg>';

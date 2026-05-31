@@ -71,7 +71,7 @@ function EvalScreen({ m, setM, lang, t, onRun, patient, proto, setProto }) {
         <div style={{ position: "sticky", top: 92, display: "flex", flexDirection: "column", gap: 18 }}>
           <div className="card card-pad">
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <img src="assets/logo-mark.png" alt="" style={{ height: 40, width: "auto" }} />
+              <BCLogo size={40} className="" />
               <div>
                 <div style={{ fontWeight: 600, fontFamily: "var(--font-display)" }}>{patient.name}</div>
                 <div className="mono" style={{ fontSize: 11, color: "var(--text-faint)" }}>{patient.id}</div>

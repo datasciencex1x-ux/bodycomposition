@@ -84,7 +84,7 @@ function MetabolismScreen({ ctx }) {
                 <button key={a.key} onClick={()=>setActKey(a.key)}
                   style={{ display:"flex", alignItems:"center", gap:12, textAlign:"left", padding:"10px 12px", borderRadius:10,
                     border:"1px solid "+(on?"var(--accent-line)":"var(--line)"), background:on?"var(--accent-soft)":"var(--surface-2)", color:"var(--text)" }}>
-                  <span className="num" style={{ fontSize:16, width:42, color:on?"var(--accent)":"var(--text-dim)" }}>×{a.factor}</span>
+                  <span className="num" style={{ fontSize:16, minWidth:58, flex:"none", whiteSpace:"nowrap", color:on?"var(--accent)":"var(--text-dim)" }}>×{a.factor}</span>
                   <span style={{ flex:1 }}>
                     <div style={{ fontSize:13, fontWeight:600 }}>{lang==="es"?a.es:a.en}</div>
                     <div style={{ fontSize:11, color:"var(--text-faint)" }}>{lang==="es"?a.desc_es:a.desc_en}</div>

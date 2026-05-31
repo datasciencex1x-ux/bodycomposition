@@ -44,8 +44,7 @@ function ReportScreen({ ctx }) {
 
   async function downloadPatientReport() {
     const L = lang === "es";
-    let logoData = "";
-    try { const rr = await fetch("assets/logo-mark.png"); const bb = await rr.blob(); logoData = await new Promise(res => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.readAsDataURL(bb); }); } catch (e) {}
+    // Logo embebido como SVG (sin archivos externos).
     const css = "body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,sans-serif;color:#14202e;margin:0;background:#eef1f5}"
       + ".wrap{max-width:760px;margin:0 auto;background:#fff}"
       + ".band{background:linear-gradient(120deg,#0b1320,#16212f 70%,#1a2738);color:#eef3f8;padding:24px 30px;border-bottom:3px solid #2bb6a0}"
@@ -62,7 +61,7 @@ function ReportScreen({ ctx }) {
     const suppRows = suppList.map(s => `<tr><td>${L?s.es:s.en}</td><td class="n">${s.dose} ${s.unit.split(" ")[0]}</td></tr>`).join("");
     const html = '<!doctype html><html lang="'+lang+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
       + '<title>'+(L?'Reporte · ':'Report · ')+subject.name+'</title><style>'+css+'</style></head><body><div class="wrap">'
-      + '<div class="band">'+(logoData?'<img src="'+logoData+'" alt="" style="height:56px;width:auto;margin-bottom:10px">':'')+'<div class="dsa">Data Science Analytics</div><h1>Body Composition</h1>'
+      + '<div class="band"><div style="margin-bottom:10px">'+window.BC_LOGO_SVG+'</div><div class="dsa">Data Science Analytics</div><h1>Body Composition</h1>'
       + '<div class="id">'+subject.name+' · '+subject.id+' · '+(L?t(subject.sex):t(subject.sex))+' · '+age.toFixed(1)+' '+t("years")+' · '+subject.sport+'</div>'
       + '<div class="id">'+subject.assessedOn+' · '+subject.phase+'</div></div>'
       + '<div class="sec"><h2>'+(L?'Resumen':'Summary')+'</h2><div class="kpis">'
@@ -129,7 +128,7 @@ function ReportScreen({ ctx }) {
         <div className="report-band">
           <div className="report-lh">
             <div className="report-lh-logo">
-              <img src="assets/logo-mark.png" alt="Body Composition" />
+              <BCLogo size={48} className="" />
               <div>
                 <div className="report-lh-name">Body Composition</div>
                 <div className="report-lh-sub">Data Science Analytics · {lang==="es"?"Antropometría ISAK":"ISAK anthropometry"}</div>

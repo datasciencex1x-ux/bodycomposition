@@ -212,7 +212,7 @@ function DietScreen({ ctx }) {
       <div className="card">
         <div className="card-head">
           <div style={{ display:"flex", alignItems:"center", gap:9 }}>
-            <img src="assets/logo-mark.png" alt="" style={{ height:30, width:"auto" }} />
+            <BCLogo size={30} className="" />
             <div><h3>{lang==="es"?"Menú personalizado con IA":"AI personalised menu"}</h3><div className="sub">{lang==="es"?"Ejemplos de alimentos según los macros":"Food examples matching the macros"}</div></div>
           </div>
           <div className="right"><button className="btn primary" onClick={runAI} disabled={ai.state==="loading"}><Icon n="spark" s={15} /> {ai.state==="loading"?(lang==="es"?"Generando…":"Generating…"):(lang==="es"?"Generar menú":"Generate menu")}</button></div>
