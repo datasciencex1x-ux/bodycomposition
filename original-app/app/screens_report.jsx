@@ -18,8 +18,7 @@ function ReportScreen({ ctx }) {
   const ffm = m.weight - rec.fatKg;
   const B = E.bmr(m, subject.sex, age, ffm);
   const bmrK = B.list.find(x => x.key === (age>=16?B.recommendedAthlete:B.recommended)).kcal;
-  const actKey = (window.BC_PREFS && window.BC_PREFS.get("activity","high")) || "high";
-  const act = window.BC_NUTRI.ACTIVITY.find(a => a.key === actKey) || window.BC_NUTRI.ACTIVITY[3];
+  const act = (window.BC_resolveActivity ? window.BC_resolveActivity() : (window.BC_NUTRI.ACTIVITY.find(a => a.key === ((window.BC_PREFS && window.BC_PREFS.get("activity","high")) || "high")) || window.BC_NUTRI.ACTIVITY[3]));
   const tdeeK = bmrK * act.factor;
   const perf = ctx.evalObj.perf || {};
   const prof = E.performanceProfile(perf, subject.sex, subject.sportKey);

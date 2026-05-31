@@ -7,6 +7,17 @@ window.BC_PREFS = window.BC_PREFS || {
   set(k, v) { try { localStorage.setItem("bc_pref_" + k, JSON.stringify(v)); } catch (e) {} },
 };
 
+/* Resuelve la actividad activa considerando un factor MANUAL ("custom"). */
+window.BC_resolveActivity = function () {
+  const N = window.BC_NUTRI;
+  const key = window.BC_PREFS.get("activity", "high");
+  if (key === "custom") {
+    const factor = +window.BC_PREFS.get("activityCustom", 1.6) || 1.6;
+    return { key: "custom", factor, es: "Personalizado", en: "Custom", desc_es: "Factor manual", desc_en: "Manual factor" };
+  }
+  return N.ACTIVITY.find(a => a.key === key) || N.ACTIVITY[3];
+};
+
 function MetabolismScreen({ ctx }) {
   const { t, lang, subject, m } = ctx;
   const E = window.BC_ENGINE, N = window.BC_NUTRI;
@@ -18,10 +29,14 @@ function MetabolismScreen({ ctx }) {
   const B = E.bmr(m, subject.sex, age, ffm);
 
   const [actKey, setActKey] = useStateMet(() => window.BC_PREFS.get("activity", "high"));
+  const [customFactor, setCustomFactor] = useStateMet(() => +window.BC_PREFS.get("activityCustom", 1.6) || 1.6);
   const [eqKey, setEqKey] = useStateMet(() => age >= 16 ? B.recommendedAthlete : B.recommended);
   useEffectMet(() => window.BC_PREFS.set("activity", actKey), [actKey]);
+  useEffectMet(() => window.BC_PREFS.set("activityCustom", customFactor), [customFactor]);
 
-  const act = N.ACTIVITY.find(a => a.key === actKey);
+  const act = actKey === "custom"
+    ? { key: "custom", factor: +customFactor || 1.6, es: "Personalizado", en: "Custom", desc_es: "Factor manual", desc_en: "Manual factor" }
+    : N.ACTIVITY.find(a => a.key === actKey);
   const eq = B.list.find(x => x.key === eqKey) || B.list[0];
   const tdee = E.tdee(eq.kcal, act.factor);
   const f0 = x => Math.round(x);

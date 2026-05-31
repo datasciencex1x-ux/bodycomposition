@@ -205,33 +205,47 @@ function Avatar({ name, sex }) {
 }
 
 
-/* Logo de marca (SVG embebido, sin archivos externos). Hélice de ADN sobre badge ámbar. */
+/* Logo de marca (SVG embebido). Aproximación a la identidad: "B" con figura
+   dinámica, degradado teal->verde y acento ámbar. Sin archivos externos. */
 function BCLogo({ size = 40, className = "brand-logo", style }) {
-  const gid = "bcLogoGrad";
+  const g = "bcLogoG", g2 = "bcLogoG2";
   return (
-    <svg className={className} width={size} height={size} viewBox="0 0 40 40" role="img" aria-label="Body Composition" style={style}>
+    <svg className={className} width={size} height={size} viewBox="0 0 48 48" role="img" aria-label="Body Composition" style={style}>
       <defs>
-        <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#ffc25c" />
-          <stop offset="100%" stopColor="#f7a823" />
+        <linearGradient id={g} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#2bb6c9" />
+          <stop offset="55%" stopColor="#3fb84e" />
+          <stop offset="100%" stopColor="#7bc450" />
+        </linearGradient>
+        <linearGradient id={g2} x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%" stopColor="#36c6b0" />
+          <stop offset="100%" stopColor="#9ad14a" />
         </linearGradient>
       </defs>
-      <rect x="0.5" y="0.5" width="39" height="39" rx="10" fill={`url(#${gid})`} />
-      <g stroke="#0a0d12" strokeWidth="2.1" strokeLinecap="round" fill="none" opacity="0.92">
-        <path d="M14 10 C 27 15, 13 25, 26 30" />
-        <path d="M26 10 C 13 15, 27 25, 14 30" />
-        <line x1="16.5" y1="13" x2="23.5" y2="13" />
-        <line x1="14.5" y1="20" x2="25.5" y2="20" />
-        <line x1="16.5" y1="27" x2="23.5" y2="27" />
-      </g>
+      <rect x="1" y="1" width="46" height="46" rx="12" fill="#0e141d" stroke="rgba(255,255,255,0.08)" />
+      {/* tronco de la B */}
+      <rect x="11" y="10" width="5.4" height="28" rx="2.4" fill={"url(#" + g + ")"} />
+      {/* lóbulos de la B */}
+      <path d="M16 11 h9 a8 8 0 0 1 0 16 h-9 z" fill="none" stroke={"url(#" + g + ")"} strokeWidth="5" strokeLinejoin="round" />
+      <path d="M16 23 h10 a8 8 0 0 1 0 15 h-10 z" fill="none" stroke={"url(#" + g2 + ")"} strokeWidth="5" strokeLinejoin="round" />
+      {/* figura dinámica (cabeza + zancada) */}
+      <circle cx="27.5" cy="15.5" r="3.1" fill={"url(#" + g2 + ")"} />
+      <path d="M20 32 C 25 24, 30 24, 33 19" fill="none" stroke="#eef3f8" strokeWidth="2.2" strokeLinecap="round" opacity="0.92" />
+      <path d="M22 37 C 26 33, 29 31, 33 32" fill="none" stroke="#f7a823" strokeWidth="2.2" strokeLinecap="round" opacity="0.95" />
     </svg>
   );
 }
 
-/* Versión en cadena (para HTML de reportes/impresión). */
-window.BC_LOGO_SVG = '<svg width="56" height="56" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">'
-  + '<defs><linearGradient id="bcLogoGradStr" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffc25c"/><stop offset="100%" stop-color="#f7a823"/></linearGradient></defs>'
-  + '<rect x="0.5" y="0.5" width="39" height="39" rx="10" fill="url(#bcLogoGradStr)"/>'
-  + '<g stroke="#0a0d12" stroke-width="2.1" stroke-linecap="round" fill="none" opacity="0.92">'
-  + '<path d="M14 10 C 27 15, 13 25, 26 30"/><path d="M26 10 C 13 15, 27 25, 14 30"/>'
-  + '<line x1="16.5" y1="13" x2="23.5" y2="13"/><line x1="14.5" y1="20" x2="25.5" y2="20"/><line x1="16.5" y1="27" x2="23.5" y2="27"/></g></svg>';
+/* Versión en cadena para HTML de reportes/impresión. */
+window.BC_LOGO_SVG =
+  '<svg width="56" height="56" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">' +
+  '<defs><linearGradient id="bcLogoGs" x1="0" y1="0" x2="1" y2="1">' +
+  '<stop offset="0%" stop-color="#2bb6c9"/><stop offset="55%" stop-color="#3fb84e"/><stop offset="100%" stop-color="#7bc450"/></linearGradient>' +
+  '<linearGradient id="bcLogoGs2" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#36c6b0"/><stop offset="100%" stop-color="#9ad14a"/></linearGradient></defs>' +
+  '<rect x="1" y="1" width="46" height="46" rx="12" fill="#0e141d"/>' +
+  '<rect x="11" y="10" width="5.4" height="28" rx="2.4" fill="url(#bcLogoGs)"/>' +
+  '<path d="M16 11 h9 a8 8 0 0 1 0 16 h-9 z" fill="none" stroke="url(#bcLogoGs)" stroke-width="5" stroke-linejoin="round"/>' +
+  '<path d="M16 23 h10 a8 8 0 0 1 0 15 h-10 z" fill="none" stroke="url(#bcLogoGs2)" stroke-width="5" stroke-linejoin="round"/>' +
+  '<circle cx="27.5" cy="15.5" r="3.1" fill="url(#bcLogoGs2)"/>' +
+  '<path d="M20 32 C 25 24, 30 24, 33 19" fill="none" stroke="#eef3f8" stroke-width="2.2" stroke-linecap="round"/>' +
+  '<path d="M22 37 C 26 33, 29 31, 33 32" fill="none" stroke="#f7a823" stroke-width="2.2" stroke-linecap="round"/></svg>';
