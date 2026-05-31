@@ -2,14 +2,20 @@
 const { useState: useStateEv } = React;
 
 function NumField({ field, val, onChange, lang }) {
-  const flagged = val !== "" && val != null && (val < field.min || val > field.max);
+  const out = val !== "" && val != null && (val < field.min || val > field.max);
+  const tone = out ? (field.opt ? "warn" : "flag") : "";
+  const range = field.min + "–" + field.max;
+  const title = out
+    ? (lang === "es" ? "Fuera del rango habitual (" + range + " " + field.u + ")"
+                     : "Outside the usual range (" + range + " " + field.u + ")")
+    : (lang === "es" ? "Rango habitual " + range + " " + field.u : "Usual range " + range + " " + field.u);
   return (
     <div className="field">
       <label>{field[lang]}</label>
-      <div className={"input-wrap" + (flagged ? " flag" : "")}>
-        <input type="number" step="0.1" value={val ?? ""} 
+      <div className={"input-wrap" + (tone ? " " + tone : "")} title={title}>
+        <input type="number" step="0.1" value={val ?? ""} placeholder={range}
           onChange={e => onChange(field.k, e.target.value === "" ? "" : parseFloat(e.target.value))} />
-        <span className="unit">{flagged ? "!" : field.u}</span>
+        <span className="unit">{out ? (field.opt ? "~" : "!") : field.u}</span>
       </div>
     </div>
   );

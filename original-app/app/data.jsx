@@ -96,7 +96,7 @@
       { k:"wrist",      es:"Muñeca",          en:"Wrist",           u:"cm", min:4.5,max:7 },
       { k:"femur",      es:"Fémur",           en:"Femur",           u:"cm", min:8,  max:12 },
       { k:"ankle",      es:"Tobillo",         en:"Ankle",           u:"cm", min:6,  max:9 },
-      { k:"chestTransverse", es:"Tórax transverso", en:"Transverse chest", u:"cm", min:22, max:34, opt:true },
+      { k:"chestTransverse", es:"Tórax transverso", en:"Transverse chest", u:"cm", min:20, max:35, opt:true },
     ],
     lengths: [
       { k:"acromialeRadiale",    es:"Acromial-radial",      en:"Acromiale-radiale",     u:"cm", min:26, max:40, opt:true },
