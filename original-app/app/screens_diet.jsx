@@ -22,8 +22,7 @@ function DietScreen({ ctx }) {
   const rec = bf.rec;
   const ffm = m.weight - rec.fatKg;
   const B = E.bmr(m, subject.sex, age, ffm);
-  const actKey = window.BC_PREFS.get("activity", "high");
-  const act = N.ACTIVITY.find(a => a.key === actKey);
+  const act = window.BC_resolveActivity ? window.BC_resolveActivity() : N.ACTIVITY.find(a => a.key === window.BC_PREFS.get("activity", "high"));
   const baseBmr = B.list.find(x => x.key === (age>=16?B.recommendedAthlete:B.recommended)).kcal;
   const tdee = E.tdee(baseBmr, act.factor);
 

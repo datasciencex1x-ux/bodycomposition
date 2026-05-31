@@ -36,7 +36,7 @@ function MetabolismScreen({ ctx }) {
 
   const act = actKey === "custom"
     ? { key: "custom", factor: +customFactor || 1.6, es: "Personalizado", en: "Custom", desc_es: "Factor manual", desc_en: "Manual factor" }
-    : N.ACTIVITY.find(a => a.key === actKey);
+    : (N.ACTIVITY.find(a => a.key === actKey) || N.ACTIVITY[3]);
   const eq = B.list.find(x => x.key === eqKey) || B.list[0];
   const tdee = E.tdee(eq.kcal, act.factor);
   const f0 = x => Math.round(x);
@@ -108,6 +108,19 @@ function MetabolismScreen({ ctx }) {
                 </button>
               );
             })}
+            <div style={{ display:"flex", alignItems:"center", gap:12, padding:"10px 12px", borderRadius:10,
+                border:"1px solid "+(actKey==="custom"?"var(--accent-line)":"var(--line)"), background:actKey==="custom"?"var(--accent-soft)":"var(--surface-2)" }}>
+              <span className="num" style={{ fontSize:16, minWidth:58, flex:"none", whiteSpace:"nowrap", display:"inline-flex", alignItems:"center", gap:2, color:actKey==="custom"?"var(--accent)":"var(--text-dim)" }}>×
+                <input type="number" step="0.05" min="1" max="2.6" value={customFactor}
+                  onFocus={()=>setActKey("custom")} onChange={e=>{ setCustomFactor(e.target.value); setActKey("custom"); }}
+                  style={{ width:66, padding:"4px 6px", fontSize:15 }} />
+              </span>
+              <span style={{ flex:1 }}>
+                <div style={{ fontSize:13, fontWeight:600 }}>{lang==="es"?"Personalizado":"Custom"}</div>
+                <div style={{ fontSize:11, color:"var(--text-faint)" }}>{lang==="es"?"Factor PAL manual (1.0–2.6)":"Manual PAL factor (1.0–2.6)"}</div>
+              </span>
+              <span className="num" style={{ fontSize:13, color:"var(--text-dim)" }}>{f0(eq.kcal*(+customFactor||1.6))}</span>
+            </div>
             <div style={{ marginTop:8, padding:"16px 18px", borderRadius:12, background:"linear-gradient(120deg,var(--accent-soft),transparent)", border:"1px solid var(--accent-line)" }}>
               <div className="eyebrow">{lang==="es"?"Gasto energético total":"Total energy expenditure"}</div>
               <div className="num" style={{ fontSize:38, marginTop:6, color:"var(--accent)" }}>{f0(tdee)} <span style={{fontSize:15, color:"var(--text-dim)"}}>kcal/día</span></div>
