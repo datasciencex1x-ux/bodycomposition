@@ -124,7 +124,9 @@ input, select { font-family: inherit; }
   display: flex; flex-direction: column;
   padding: 20px 16px;
   z-index: 30;
+  overflow: hidden;
 }
+.brand { flex: none; }
 .brand { display: flex; align-items: center; gap: 11px; padding: 4px 6px 18px; }
 .brand-logo { height: 40px; width: auto; flex: none; filter: drop-shadow(0 4px 13px rgba(0,0,0,0.45)); }
 .brand-mark {
@@ -141,7 +143,8 @@ input, select { font-family: inherit; }
 .brand-name { font-family: var(--font-display); font-weight: 600; font-size: 16px; letter-spacing: -0.02em; }
 .brand-sub { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.16em; color: var(--text-faint); text-transform: uppercase; margin-top: 1px; }
 
-.nav { display: flex; flex-direction: column; gap: 2px; margin-top: 6px; }
+.nav { display: flex; flex-direction: column; gap: 2px; margin-top: 6px; flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; }
+.nav::-webkit-scrollbar { width: 7px; }
 .nav-label { padding: 14px 8px 6px; }
 .nav-item {
   display: flex; align-items: center; gap: 11px;
@@ -157,7 +160,7 @@ input, select { font-family: inherit; }
 .nav-item.disabled { opacity: 0.4; pointer-events: none; }
 .nav-tag { margin-left: auto; font-family: var(--font-mono); font-size: 8.5px; letter-spacing: .12em; color: var(--text-faint); border: 1px solid var(--line); padding: 1px 5px; border-radius: 5px; }
 
-.sidebar-foot { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); }
+.sidebar-foot { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); flex: none; }
 
 /* ---------- Topbar ---------- */
 .main { min-width: 0; display: flex; flex-direction: column; }
